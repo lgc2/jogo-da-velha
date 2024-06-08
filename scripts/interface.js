@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
         square.addEventListener('click', handleClick)
     })
 })
+document.getElementById('btn-reset')
+    .addEventListener('click', removeSymbolDivAndResetGame)
 
 function handleClick(event) {
     let square = event.target
@@ -11,12 +13,17 @@ function handleClick(event) {
 
     if (!isGameOver()) {
         handleMove(position)
-        if (win) {
+        updateSquare(square)
+        if (hasWin) {
+            for (let i = 0; i < winPositions.length; i++) {
+                let winSquare = document.getElementById(winPositions[i])
+                winSquare.style.backgroundColor = 'white'
+            }
+
             setTimeout(function () {
                 alert(`Player '${symbols[playerTime]}' venceu!!!`)
             }, 100)
         }
-        updateSquare(square)
     }
 }
 
@@ -29,14 +36,16 @@ function updateSquare(square) {
     }
 }
 
-function updateSquares() {
+function removeSymbolDivAndResetGame() {
+    resetGame()
+
     let squares = document.querySelectorAll(".square")
     squares.forEach((square) => {
-        let position = square.id
-        let symbol = board[position]
+        square.style.backgroundColor = 'beige'
 
-        if (symbol !== '') {
-            square.innerHTML = `<div class='${symbol}'></div>`
+        if (square.querySelector('div') != null) {
+            let child = square.querySelector('div')
+            child.remove()
         }
     })
 }

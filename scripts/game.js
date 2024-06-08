@@ -1,10 +1,11 @@
 // inicializar variáveis
 let board = ['', '', '', '', '', '', '', '', '']
 let playerTime = 0 // 0 or 1
-let win = false
+let hasWin = false
 let gameOver = false
 
 let symbols = ['o', 'x']
+let winPositions = []
 
 function handleMove(position) {
     if (board[position] === '') {
@@ -36,11 +37,17 @@ function isWin() {
         if (board[winPossibility[0]] === symbols[playerTime]
             && board[winPossibility[1]] === symbols[playerTime]
             && board[winPossibility[2]] === symbols[playerTime]) {
-            win = true
-            return win
+
+            winPositions = [
+                winPossibility[0],
+                winPossibility[1],
+                winPossibility[2]
+            ]
+            hasWin = true
+            return hasWin
         }
     })
-    return win
+    return hasWin
 }
 
 function isGameOver() {
@@ -56,4 +63,11 @@ function isGameOver() {
         gameOver = true
     }
     return gameOver
+}
+
+function resetGame() {
+    board = ['', '', '', '', '', '', '', '', '']
+    playerTime = 0
+    hasWin = false
+    gameOver = false
 }

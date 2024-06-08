@@ -1,3 +1,8 @@
+html {
+    background-color: black;
+    color: white;
+}
+
 body {
     text-align: center;
 }
@@ -16,6 +21,7 @@ h1 {
 
 .o {
     position: relative;
+    color: black;
 }
 
 .o:after {
@@ -31,6 +37,7 @@ h1 {
 
 .x {
     position: relative;
+    color: black;
 }
 
 .x:after {
@@ -42,4 +49,14 @@ h1 {
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+#btn-reset {
+    width: 316px;
+    height: 25px;
+    color: black;
+    font-weight: 800;
+    background-color: rgb(250, 175, 64);
+    border: none;
+    cursor: pointer;
 }
